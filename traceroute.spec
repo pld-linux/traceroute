@@ -87,7 +87,7 @@ yardýmcý olabilir.
 
 %build
 autoconf
-CFLAGS="%{rpmcflags} -DHAVE_IFF_LOOPBACK"
+CFLAGS="%{rpmcflags} -DHAVE_IFF_LOOPBACK -DUSE_KERNEL_ROUTING_TABLE"
 %configure
 %{__make} 
 
