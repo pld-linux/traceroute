@@ -21,6 +21,7 @@ Patch3:		%{name}-autoroute.patch
 Patch4:		%{name}-lsrr.patch
 Patch5:		%{name}-droproot.patch
 BuildRequires:	autoconf
+BuildRequires:	automake
 Obsoletes:	traceroute-nanog
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -104,6 +105,8 @@ Traceroute выводит путь, который пакеты проходят по сети TCP/IP. Имена
 
 %build
 %{__autoconf}
+cp -f %{_datadir}/automake/install-sh .
+cp -f %{_datadir}/automake/config.sub .
 CFLAGS="%{rpmcflags} -DHAVE_IFF_LOOPBACK -DUSE_KERNEL_ROUTING_TABLE"
 %configure
 %{__make}
