@@ -21,6 +21,7 @@ Patch3:		%{name}-autoroute.patch
 Patch4:		%{name}-lsrr.patch
 Patch5:		%{name}-droproot.patch
 BuildRequires:	autoconf
+Obsoletes:	traceroute-nanog
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -89,15 +90,15 @@ yardýmcý olabilir.
 autoconf
 CFLAGS="%{rpmcflags} -DHAVE_IFF_LOOPBACK -DUSE_KERNEL_ROUTING_TABLE"
 %configure
-%{__make} 
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d  $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/{,pl/}man8}
+install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/{,pl/}man8}
 
 install traceroute $RPM_BUILD_ROOT%{_sbindir}
 install traceroute.8 $RPM_BUILD_ROOT%{_mandir}/man8
-install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man8
+install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man8/traceroute.8
 
 gzip -9nf CHANGES README
 
@@ -108,5 +109,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc *.gz
 %attr(4754,root,adm) %{_sbindir}/traceroute
-%{_mandir}/man8/traceroute.8*
-%lang(pl) %{_mandir}/pl/man8/traceroute.8*
+%{_mandir}/man8/traceroute.8
+%lang(pl) %{_mandir}/pl/man8/traceroute.8
