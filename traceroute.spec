@@ -70,5 +70,5 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc {CHANGES,README}.gz
-%attr(4754,root,icmp) %{_sbindir}/traceroute
-%attr(644,root,root) %{_mandir}/man8/traceroute.8.gz
+%attr(4754,root,adm) %{_sbindir}/traceroute
+%{_mandir}/man8/traceroute.8*
