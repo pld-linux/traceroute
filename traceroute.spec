@@ -11,7 +11,7 @@ Patch0:		traceroute-1.4a5-fix.patch
 Patch1:		traceroute-1.4a5-secfix.patch
 Patch2:		traceroute-1.4a5-alpha.patch
 Patch3:		traceroute-1.4a5-autoroute.patch
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define	_prefix	/usr
 
@@ -47,7 +47,6 @@ install -d  ${RPM_BUILD_ROOT}{%{_sbindir},%{_mandir}/man8}
 
 install -s traceroute $RPM_BUILD_ROOT%{_sbindir}
 install traceroute.8.gz $RPM_BUILD_ROOT%{_mandir}/man8/
-
 
 %clean
 rm -rf $RPM_BUILD_ROOT
