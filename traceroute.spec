@@ -10,7 +10,7 @@ Summary(uk):	Показу╓ трасу, якою проходять пакети по TCP/IP мереж╕
 Summary(zh_CN):	[о╣мЁ]╪Л╡ИмЬбГа╙м╗б╥╬╤╣д╧╓╬ъ
 Name:		traceroute
 Version:	1.4a12
-Release:	10
+Release:	11
 License:	BSD
 Group:		Applications/Networking
 Source0:	ftp://ftp.ee.lbl.gov/%{name}-%{version}.tar.gz
@@ -116,9 +116,10 @@ CFLAGS="%{rpmcflags} -DHAVE_IFF_LOOPBACK -DUSE_KERNEL_ROUTING_TABLE"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man8}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_sbindir},%{_mandir}/man8}
 
-install traceroute $RPM_BUILD_ROOT%{_sbindir}
+install traceroute $RPM_BUILD_ROOT%{_bindir}
+ln -s %{_bindir}/traceroute $RPM_BUILD_ROOT%{_sbindir}
 install traceroute.8 $RPM_BUILD_ROOT%{_mandir}/man8
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
@@ -129,7 +130,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc CHANGES README
-%attr(4754,root,adm) %{_sbindir}/traceroute
+%attr(4754,root,adm) %{_bindir}/*
+%{_sbindir}/*
 %{_mandir}/man8/*
 %lang(pl) %{_mandir}/pl/man8/*
 %lang(pt) %{_mandir}/pt/man8/*
