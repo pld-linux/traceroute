@@ -1,5 +1,7 @@
 Summary:	Traces the route taken by packets over a TCP/IP network
 Summary(pl):	Program do ¶ledzenia trasy pakietów przez sieæ TCP/IP
+Summary(pt_BR):	Mostra a rota que os pacotes usam através de uma rede TCP/IP
+Summary(es):	Enseña la ruta que los paquetes usan a través de una red TCP/IP
 Name:		traceroute
 Version:	1.4a5
 Release:	26
@@ -35,6 +37,22 @@ connectivity problems.
 
 %description -l pl
 traceroute wy¶wietla trasê pakietów do podanego komputera.
+
+%description -l pt_BR
+Traceroute imprime a rota que os pacotes fazem através de uma rede
+TCP/IP. São impressos os nomes (ou números de IP se os nomes não
+estiverem disponíveis) das máquinas que estão roteando pacotes
+da máquina traceroute, junto com o tempo que levou para a máquina
+receber o reconhecimento (ack) do pacote. Esta ferramenta pode ser
+muito útil para diagnosticar problemas de rede.
+
+%description -l es
+Traceroute imprime la ruta que los paquetes hacen a través de una
+red TCP/IP. Son impresos los nombres (o números de IP si los nombres
+no están disponibles) de las máquinas que están en ruta en paquetes
+de la máquina traceroute, junto con el tiempo que ha llevado para
+que la máquina reciba el reconocimiento (ack) del paquete. Esta
+herramienta puede ser muy útil para diagnosticar problemas de red.
 
 %prep
 %setup -q
