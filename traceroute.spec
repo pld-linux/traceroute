@@ -10,7 +10,7 @@ Summary(uk):	Показу╓ трасу, якою проходять пакети по TCP/IP мереж╕
 Summary(zh_CN):	[о╣мЁ]╪Л╡ИмЬбГа╙м╗б╥╬╤╣д╧╓╬ъ
 Name:		traceroute
 Version:	1.4a12
-Release:	8
+Release:	9
 License:	BSD
 Group:		Applications/Networking
 Source0:	ftp://ftp.ee.lbl.gov/%{name}-%{version}.tar.gz
