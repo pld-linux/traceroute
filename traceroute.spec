@@ -7,13 +7,14 @@ Summary(pt_BR):	Mostra a rota que os pacotes usam atravИs de uma rede TCP/IP
 Summary(ru):	Показывает трассу, по которой проходят пакеты в TCP/IP сети
 Summary(tr):	TCP/IP aПlarЩnda paketlerin rotasЩnЩ izler
 Summary(uk):	Показу╓ трасу, якою проходять пакети по TCP/IP мереж╕
+Summary(zh_CN):	[о╣мЁ]╪Л╡ИмЬбГа╙м╗б╥╬╤╣д╧╓╬ъ
 Name:		traceroute
 Version:	1.4a12
-Release:	5
+Release:	8
 License:	BSD
 Group:		Applications/Networking
 Source0:	ftp://ftp.ee.lbl.gov/%{name}-%{version}.tar.gz
-Source1:	%{name}.8.pl
+Source1:	%{name}-non-english-man-pages.tar.bz2
 Patch0:		%{name}-acfix.patch
 Patch1:		%{name}-secfix.patch
 Patch2:		%{name}-unaligned.patch
@@ -113,11 +114,12 @@ CFLAGS="%{rpmcflags} -DHAVE_IFF_LOOPBACK -DUSE_KERNEL_ROUTING_TABLE"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/{,pl/}man8}
+install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man8}
 
 install traceroute $RPM_BUILD_ROOT%{_sbindir}
 install traceroute.8 $RPM_BUILD_ROOT%{_mandir}/man8
-install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man8/traceroute.8
+
+bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -128,3 +130,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(4754,root,adm) %{_sbindir}/traceroute
 %{_mandir}/man8/*
 %lang(pl) %{_mandir}/pl/man8/*
+%lang(pt) %{_mandir}/pt/man8/*
