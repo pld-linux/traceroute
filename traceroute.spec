@@ -4,15 +4,17 @@ Summary(es):	EnseЯa la ruta que los paquetes usan a travИs de una red TCP/IP
 Summary(fr):	DИtermine le route empruntИe par les paquets sur un rИseau TCP/IP
 Summary(pl):	Program do ╤ledzenia trasy pakietСw przez sieФ TCP/IP
 Summary(pt_BR):	Mostra a rota que os pacotes usam atravИs de uma rede TCP/IP
+Summary(ru):	Показывает трассу, по которой проходят пакеты в TCP/IP сети
 Summary(tr):	TCP/IP aПlarЩnda paketlerin rotasЩnЩ izler
+Summary(uk):	Показу╓ трасу, якою проходять пакети по TCP/IP мереж╕
+Summary(zh_CN):	[о╣мЁ]╪Л╡ИмЬбГа╙м╗б╥╬╤╣д╧╓╬ъ
 Name:		traceroute
 Version:	1.4a12
-Release:	2
+Release:	8
 License:	BSD
 Group:		Applications/Networking
-Group(de):	Applikationen/Netzwerkwesen
-Group(pl):	Aplikacje/Sieciowe
 Source0:	ftp://ftp.ee.lbl.gov/%{name}-%{version}.tar.gz
+Source1:	%{name}-non-english-man-pages.tar.bz2
 Patch0:		%{name}-acfix.patch
 Patch1:		%{name}-secfix.patch
 Patch2:		%{name}-unaligned.patch
@@ -20,6 +22,8 @@ Patch3:		%{name}-autoroute.patch
 Patch4:		%{name}-lsrr.patch
 Patch5:		%{name}-droproot.patch
 BuildRequires:	autoconf
+BuildRequires:	automake
+Obsoletes:	traceroute-nanog
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -67,6 +71,14 @@ mАquina traceroute, junto com o tempo que levou para a mАquina receber
 o reconhecimento (ack) do pacote. Esta ferramenta pode ser muito Зtil
 para diagnosticar problemas de rede.
 
+%description -l ru
+Traceroute выводит путь, который пакеты проходят по сети TCP/IP. Имена
+(или IP-адреса, если имена недоступны) машин, через которые прошли
+пакеты по дороге до точки назначения вместе со временем, которое
+потребовалось для получения подтверждения о получении пакета от этих
+машин. Эта утилита может быть очень полезна для диагностики сетевых
+проблем.
+
 %description -l tr
 Traceroute, bir TCP/IP aПЩ boyunca paketlerin izledikleri rotanЩn
 dЖkЭmЭnЭ ГЩkarЩr. гalЩЧtЩПЩ makineden hedef makineye kadar olan yol
@@ -74,6 +86,14 @@ boyunca paketleri yЖnlendiren her makinenin ismi (ya da IP
 numaralarЩ), bu makinelerden alЩndЩ bilgisinin alЩnmasЩna kadar geГen
 sЭreyle birlikte listelenir. AП sorunlarЩnЩn belirlenmesinde oldukГa
 yardЩmcЩ olabilir.
+
+%description -l ru
+Traceroute выводит путь, который пакеты проходят по сети TCP/IP. Имена
+(или IP-адреса, если имена недоступны) машин, через которые прошли
+пакеты по дороге до точки назначения вместе со временем, которое
+потребовалось для получения подтверждения о получении пакета от этих
+машин. Эта утилита может быть очень полезна для диагностики сетевых
+проблем.
 
 %prep
 %setup -q
@@ -85,25 +105,29 @@ yardЩmcЩ olabilir.
 #%patch5 -p1
 
 %build
-autoconf
-CFLAGS="%{rpmcflags} -DHAVE_IFF_LOOPBACK"
+%{__autoconf}
+cp -f %{_datadir}/automake/install-sh .
+cp -f %{_datadir}/automake/config.sub .
+CFLAGS="%{rpmcflags} -DHAVE_IFF_LOOPBACK -DUSE_KERNEL_ROUTING_TABLE"
 %configure
-%{__make} 
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d  $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man8}
+install -d $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man8}
 
 install traceroute $RPM_BUILD_ROOT%{_sbindir}
 install traceroute.8 $RPM_BUILD_ROOT%{_mandir}/man8
 
-gzip -9nf CHANGES README
+bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc CHANGES README
 %attr(4754,root,adm) %{_sbindir}/traceroute
-%{_mandir}/man8/traceroute.8*
+%{_mandir}/man8/*
+%lang(pl) %{_mandir}/pl/man8/*
+%lang(pt) %{_mandir}/pt/man8/*
