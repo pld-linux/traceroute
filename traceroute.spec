@@ -10,8 +10,6 @@ Version:	1.4a12
 Release:	3
 License:	BSD
 Group:		Applications/Networking
-Group(de):	Applikationen/Netzwerkwesen
-Group(pl):	Aplikacje/Sieciowe
 Source0:	ftp://ftp.ee.lbl.gov/%{name}-%{version}.tar.gz
 Source1:	%{name}.8.pl
 Patch0:		%{name}-acfix.patch
