@@ -9,7 +9,7 @@ Summary(tr):	TCP/IP aПlarЩnda paketlerin rotasЩnЩ izler
 Summary(uk):	Показу╓ трасу, якою проходять пакети по TCP/IP мереж╕
 Name:		traceroute
 Version:	1.4a12
-Release:	4
+Release:	5
 License:	BSD
 Group:		Applications/Networking
 Source0:	ftp://ftp.ee.lbl.gov/%{name}-%{version}.tar.gz
@@ -116,14 +116,12 @@ install traceroute $RPM_BUILD_ROOT%{_sbindir}
 install traceroute.8 $RPM_BUILD_ROOT%{_mandir}/man8
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man8/traceroute.8
 
-gzip -9nf CHANGES README
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz
+%doc CHANGES README
 %attr(4754,root,adm) %{_sbindir}/traceroute
 %{_mandir}/man8/*
 %lang(pl) %{_mandir}/pl/man8/*
