@@ -7,12 +7,13 @@ Summary(pt_BR):	Mostra a rota que os pacotes usam através de uma rede TCP/IP
 Summary(tr):	TCP/IP aðlarýnda paketlerin rotasýný izler
 Name:		traceroute
 Version:	1.4a12
-Release:	2
+Release:	3
 License:	BSD
 Group:		Applications/Networking
 Group(de):	Applikationen/Netzwerkwesen
 Group(pl):	Aplikacje/Sieciowe
 Source0:	ftp://ftp.ee.lbl.gov/%{name}-%{version}.tar.gz
+Source1:	%{name}.1.pl
 Patch0:		%{name}-acfix.patch
 Patch1:		%{name}-secfix.patch
 Patch2:		%{name}-unaligned.patch
@@ -92,10 +93,11 @@ CFLAGS="%{rpmcflags} -DHAVE_IFF_LOOPBACK"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d  $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/man8}
+install -d  $RPM_BUILD_ROOT{%{_sbindir},%{_mandir}/{,pl/}man8}
 
 install traceroute $RPM_BUILD_ROOT%{_sbindir}
 install traceroute.8 $RPM_BUILD_ROOT%{_mandir}/man8
+install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/pl/man8
 
 gzip -9nf CHANGES README
 
@@ -107,3 +109,4 @@ rm -rf $RPM_BUILD_ROOT
 %doc *.gz
 %attr(4754,root,adm) %{_sbindir}/traceroute
 %{_mandir}/man8/traceroute.8*
+%lang(pl) %{_mandir}/pl/man8/traceroute.8*
