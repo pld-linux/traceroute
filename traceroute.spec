@@ -38,7 +38,7 @@ problems.
 %build
 
 %configure
-make 
+%{__make} 
 gzip -9nf traceroute.8 CHANGES FILES README
 
 %install
