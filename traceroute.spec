@@ -15,7 +15,7 @@ License:	BSD
 Group:		Applications/Networking
 Source0:	ftp://ftp.ee.lbl.gov/%{name}-%{version}.tar.gz
 # Source0-md5:	964d599ef696efccdeebe7721cd4828d
-Source1:	%{name}-non-english-man-pages.tar.bz2
+Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	76539283b9fcb499ba5121a8a06e9825
 Patch0:		%{name}-acfix.patch
 Patch1:		%{name}-secfix.patch
