@@ -5,7 +5,7 @@
  
  		case 'g':
 +			if (strlen(optarg) >= MAXHOSTNAMELEN) {
-+			    Fprintf(stderr, "%s: Nice Try !\n", prog);
++			    Fprintf(stderr, "%s: Gateway address too long\n", prog);
 +			    exit(-1);
 +			}
  			if (lsrr >= NGATEWAYS) {
@@ -17,7 +17,7 @@
  			device = optarg;
 +			if (strlen(device) >= 16) { /* that is the IFNAMSIZ
 +						     * from kernel headers */
-+			    Fprintf(stderr, "%s: Nice try !\n", prog);
++			    Fprintf(stderr, "%s: Interface name too long\n", prog);
 +			    exit(-1);
 +			}
  			break;
@@ -28,7 +28,7 @@
  			 */
  			source = optarg;
 +			if (strlen(source) >= MAXHOSTNAMELEN) {
-+			    Fprintf(stderr, "%s: Nice Try !\n", prog);
++			    Fprintf(stderr, "%s: Source address too long\n", prog);
 +			    exit(-1);
 +			}
  			break;
@@ -39,7 +39,7 @@
  	case 1:
  		hostname = argv[optind];
 +		if (strlen(hostname) >= MAXHOSTNAMELEN) {
-+		    Fprintf(stderr, "%s: Nice try !\n", prog);
++		    Fprintf(stderr, "%s: Address too long\n", prog);
 +		    exit(-1);
 +		}
  		hi = gethostinfo(hostname);

@@ -10,14 +10,13 @@ Group:		Applications/Networking
 Group(de):	Applikationen/Netzwerkwesen
 Group(pl):	Aplikacje/Sieciowe
 Source0:	ftp://ftp.ee.lbl.gov/%{name}-%{version}.tar.gz
-Patch0:		%{name}-fix.patch
-Patch1:		%{name}-1.4a5-secfix.patch
+Patch0:		%{name}-acfix.patch
+Patch1:		%{name}-secfix.patch
 Patch2:		%{name}-unaligned.patch
-Patch3:		%{name}-llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch.patch
-Patch4:		%{name}-autoroute.patch
-Patch5:		%{name}-aliases.patch
-Patch6:		%{name}-droproot.patch
-Patch7:		%{name}-lsrr.patch
+Patch3:		%{name}-autoroute.patch
+Patch4:		%{name}-lsrr.patch
+#Patch5:	%{name}-droproot.patch
+BuildRequires:	autoconf
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -57,12 +56,11 @@ herramienta puede ser muy útil para diagnosticar problemas de red.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
-#%patch6 -p1
-#%patch7 -p1
+#%patch5 -p1
 
 %build
-%configure2_13
+autoconf
+%configure
 %{__make} 
 
 %install

@@ -1,18 +1,59 @@
---- ./traceroute.c.orig	Sun Aug 12 15:36:45 2001
-+++ ./traceroute.c	Sun Aug 12 15:40:30 2001
-@@ -345,6 +345,11 @@
- int	str2val(const char *, const char *, int, int);
- void	tvsub(struct timeval *, struct timeval *);
- __dead	void usage(void);
+diff -Nur traceroute-1.4a12.orig/configure.in traceroute-1.4a12/configure.in
+--- traceroute-1.4a12.orig/configure.in	Mon Dec 18 10:38:29 2000
++++ traceroute-1.4a12/configure.in	Wed Aug 15 16:15:28 2001
+@@ -44,7 +44,7 @@
+ 	;;
+ 
+ linux*)
+-	V_INCLS="$V_INCLS -Ilinux-include"
++	V_INCLS="$V_INCLS -Ilinux-include -DUSE_KERNEL_ROUTING_TABLE"
+ 	AC_DEFINE(BYTESWAP_IP_HDR)
+ 	;;
+ 
+diff -Nur traceroute-1.4a12.orig/ifaddrlist.c traceroute-1.4a12/ifaddrlist.c
+--- traceroute-1.4a12.orig/ifaddrlist.c	Thu Nov 23 21:02:06 2000
++++ traceroute-1.4a12/ifaddrlist.c	Wed Aug 15 16:21:49 2001
+@@ -169,6 +169,15 @@
+ 		}
+ 		sin = (struct sockaddr_in *)&ifr.ifr_addr;
+ 		al->addr = sin->sin_addr.s_addr;
++		if (ioctl(fd, SIOCGIFNETMASK, (char *)&ifr) < 0) {
++			(void)sprintf(errbuf, "SIOCGIFNETMASK: %s: %s",
++			    device, strerror(errno));
++			(void)close(fd);
++			return (-1);
++		}
 +
++		sin = (struct sockaddr_in *)&ifr.ifr_netmask;
++		al->mask = sin->sin_addr.s_addr;
+ 		al->device = strdup(device);
+ 		++al;
+ 		++nipaddr;
+diff -Nur traceroute-1.4a12.orig/ifaddrlist.h traceroute-1.4a12/ifaddrlist.h
+--- traceroute-1.4a12.orig/ifaddrlist.h	Tue Apr 22 22:15:51 1997
++++ traceroute-1.4a12/ifaddrlist.h	Wed Aug 15 16:22:13 2001
+@@ -23,6 +23,7 @@
+ 
+ struct ifaddrlist {
+ 	u_int32_t addr;
++	u_int32_t mask;
+ 	char *device;
+ };
+ 
+diff -Nur traceroute-1.4a12.orig/traceroute.c traceroute-1.4a12/traceroute.c
+--- traceroute-1.4a12.orig/traceroute.c	Wed Aug 15 16:06:35 2001
++++ traceroute-1.4a12/traceroute.c	Wed Aug 15 16:26:18 2001
+@@ -349,6 +349,9 @@
+ #ifndef HAVE_USLEEP
+ int	usleep(u_int);
+ #endif
 +#ifdef USE_KERNEL_ROUTING_TABLE
 +struct ifaddrlist *search_routing_table(struct sockaddr_in *to, struct ifaddrlist *al, int n);
 +#endif
-+
- int	wait_for_reply(int, struct sockaddr_in *, const struct timeval *);
- #ifndef HAVE_USLEEP
- int	usleep(u_int);
-@@ -368,7 +373,7 @@
+ 
+ int
+ main(int argc, char **argv)
+@@ -368,7 +371,7 @@
  	int tos = 0, settos = 0;
  	register int lsrr = 0;
  	register u_short off = 0;
@@ -21,7 +62,7 @@
  	char errbuf[132];
  
  	if (argv[0] == NULL)
-@@ -699,7 +704,8 @@
+@@ -699,7 +702,8 @@
  		    sizeof(on));
  
  	/* Get the interface address list */
@@ -31,57 +72,41 @@
  	if (n < 0) {
  		Fprintf(stderr, "%s: ifaddrlist: %s\n", prog, errbuf);
  		exit(1);
-@@ -724,12 +730,22 @@
+@@ -724,6 +728,15 @@
  
  	/* Determine our source address */
  	if (source == NULL) {
 +#ifdef USE_KERNEL_ROUTING_TABLE
 +		/* Search the kernel routing table for a match with the
 +		 * destination address.  Then use that interface.  If
-+		 * there is no match, default to using the first
++		 * there is no match, default to using the first 
 +		 * interface found.
 +		 */
 +		al = search_routing_table(to, allist, n);
-+		setsin(from, al->mask);
++		setsin(from, al->addr);
 +#else
-+			
  		/*
  		 * If a device was specified, use the interface address.
  		 * Otherwise, try to determine our source address.
- 		 */
- 		if (device != NULL)
--			setsin(from, al->addr);
-+			setsin(from, al->mask);
- 		else if ((err = findsaddr(to, from)) != NULL) {
- 			Fprintf(stderr, "%s: findsaddr: %s\n",
- 			    prog, err);
-@@ -747,7 +763,7 @@
- 		 */
- 		if (device != NULL) {
- 			for (i = hi->n, ap = hi->addrs; i > 0; --i, ++ap)
--				if (*ap == al->addr)
-+				if (*ap == al->mask)
- 					break;
- 			if (i <= 0) {
- 				Fprintf(stderr,
-@@ -763,6 +779,7 @@
- 			"%s: Warning: %s has multiple addresses; using %s\n",
+@@ -764,6 +777,7 @@
  				    prog, source, inet_ntoa(from->sin_addr));
  		}
-+#endif
  		freehostinfo(hi);
++#endif
  	}
  
-@@ -1401,3 +1418,86 @@
+ 	/* Revert to non-privileged user after opening sockets */
+@@ -1401,3 +1415,101 @@
  	    "\t[-w waittime] [-z pausemsecs] host [packetlen]\n", prog);
  	exit(1);
  }
++
 +#ifdef USE_KERNEL_ROUTING_TABLE
 +
 +/* This function currently only supports IPv4.  Someone who knows
 + * more about multi-protocol socket stuff should take a look at this.
-+ *
-+ * (But does it make any sense for traceroute to support other
++ * 
++ * (But does it make any sense for traceroute to support other 
 + * protocols?  Maybe IPv6...
 + */
 +
@@ -91,37 +116,42 @@
 +	FILE *fp;
 +	char buf[1024];
 +	char ifname[128];
-+	unsigned int route_dest;
++        unsigned int route_dest;
 +	unsigned int mask;
-+	char best_name[128];
 +	unsigned int best_mask;
 +	unsigned int dest_addr;
++	unsigned int best_addr;
++	unsigned int gateway;
++	unsigned int use_gateway;
 +	unsigned int convs;
-+	
++
 +	/* How come using ntohl(to->sin_addr.s_addr) doesn't work here? */
 +	dest_addr = to->sin_addr.s_addr;
-+	
++
 +	fp = fopen("/proc/net/route", "r");
 +	if (fp == NULL) {
 +		return al;
 +	}
-+	
++
 +	/* Skip the first line (the column headings) */
 +	if (fgets(buf, sizeof(buf), fp) == NULL) {
 +		fclose(fp);
 +		return al;
 +	}
-+	best_name[0] = '\0';
++
 +	best_mask = 0;
-+	
++	best_addr = 0;
++	use_gateway = 0;
++
 +	while (fgets(buf, sizeof(buf), fp) != NULL) {
 +		/* Field 1: interface name
 +		 * Field 2: dest addr
-+		 * Field 8: genmask
++		 * Field 3: gateway addr
++		 * Field 8: genmask 
 +		 */
-+		convs = sscanf(buf, "%s %x %*s %*s %*s %*s %*s %x",
-+			ifname, &route_dest, &mask);
-+		if (convs != 3) {
++		convs = sscanf(buf, "%s %x %x %*s %*s %*s %*s %x", 
++				ifname, &route_dest, &gateway, &mask);
++		if (convs != 4) {
 +			/* format error .... */
 +			fclose(fp);
 +			return al;
@@ -136,20 +166,30 @@
 +				 * previous match (or is the first match)
 +				 */
 +				best_mask = mask;
-+				strncpy(best_name, ifname, sizeof(best_name));
++				best_addr = route_dest;
++				use_gateway = gateway;
 +			}
 +		}
 +	}
 +
 +	fclose(fp);
-+	
++
 +	/* If we don't find a match, we'll return the first entry */
 +	first_if = al;
-+	
++
 +	while (al < first_if + n) {
-+		if (strcmp(best_name, al->device) == 0) {
++		/* Use different approach if we send through gateway */
++		if (use_gateway) {
++			if ((al->addr & al->mask) == (use_gateway & al->mask)) {
++				return al;
++			}
++		} else {
++		/* Better way than comparing if names,
++		   this works with aliased if:s too */
++		if (best_addr == (al->addr & al->mask)) {
 +			/* Got a match */
 +			return al;
++		}
 +		}
 +		al++;
 +	}
@@ -158,14 +198,3 @@
 +}
 +
 +#endif
-+								
---- ./findsaddr-linux.c.orig	Sun Aug 12 15:43:35 2001
-+++ ./findsaddr-linux.c	Sun Aug 12 15:44:05 2001
-@@ -132,6 +132,6 @@
- 		return (errbuf);
- 	}
- 
--	setsin(from, al->addr);
-+	setsin(from, al->mask);
- 	return (NULL);
- }
