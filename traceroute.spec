@@ -7,7 +7,7 @@ Summary(pt_BR):	Mostra a rota que os pacotes usam através de uma rede TCP/IP
 Summary(tr):	TCP/IP aðlarýnda paketlerin rotasýný izler
 Name:		traceroute
 Version:	1.4a12
-Release:	3
+Release:	4
 License:	BSD
 Group:		Applications/Networking
 Source0:	ftp://ftp.ee.lbl.gov/%{name}-%{version}.tar.gz
@@ -107,5 +107,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc *.gz
 %attr(4754,root,adm) %{_sbindir}/traceroute
-%{_mandir}/man8/traceroute.8
-%lang(pl) %{_mandir}/pl/man8/traceroute.8
+%{_mandir}/man8/*
+%lang(pl) %{_mandir}/pl/man8/*
