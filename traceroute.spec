@@ -4,7 +4,9 @@ Summary(es):	EnseЯa la ruta que los paquetes usan a travИs de una red TCP/IP
 Summary(fr):	DИtermine le route empruntИe par les paquets sur un rИseau TCP/IP
 Summary(pl):	Program do ╤ledzenia trasy pakietСw przez sieФ TCP/IP
 Summary(pt_BR):	Mostra a rota que os pacotes usam atravИs de uma rede TCP/IP
+Summary(ru):	Показывает трассу, по которой проходят пакеты в TCP/IP сети
 Summary(tr):	TCP/IP aПlarЩnda paketlerin rotasЩnЩ izler
+Summary(uk):	Показу╓ трасу, якою проходять пакети по TCP/IP мереж╕
 Name:		traceroute
 Version:	1.4a12
 Release:	4
@@ -67,6 +69,14 @@ mАquina traceroute, junto com o tempo que levou para a mАquina receber
 o reconhecimento (ack) do pacote. Esta ferramenta pode ser muito Зtil
 para diagnosticar problemas de rede.
 
+%description -l ru
+Traceroute выводит путь, который пакеты проходят по сети TCP/IP. Имена
+(или IP-адреса, если имена недоступны) машин, через которые прошли
+пакеты по дороге до точки назначения вместе со временем, которое
+потребовалось для получения подтверждения о получении пакета от этих
+машин. Эта утилита может быть очень полезна для диагностики сетевых
+проблем.
+
 %description -l tr
 Traceroute, bir TCP/IP aПЩ boyunca paketlerin izledikleri rotanЩn
 dЖkЭmЭnЭ ГЩkarЩr. гalЩЧtЩПЩ makineden hedef makineye kadar olan yol
@@ -74,6 +84,14 @@ boyunca paketleri yЖnlendiren her makinenin ismi (ya da IP
 numaralarЩ), bu makinelerden alЩndЩ bilgisinin alЩnmasЩna kadar geГen
 sЭreyle birlikte listelenir. AП sorunlarЩnЩn belirlenmesinde oldukГa
 yardЩmcЩ olabilir.
+
+%description -l ru
+Traceroute выводит путь, который пакеты проходят по сети TCP/IP. Имена
+(или IP-адреса, если имена недоступны) машин, через которые прошли
+пакеты по дороге до точки назначения вместе со временем, которое
+потребовалось для получения подтверждения о получении пакета от этих
+машин. Эта утилита может быть очень полезна для диагностики сетевых
+проблем.
 
 %prep
 %setup -q
