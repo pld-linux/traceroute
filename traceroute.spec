@@ -52,7 +52,7 @@ traceroute wy¶wietla trasê pakietów do podanego komputera.
 %patch11 -p1
 
 %build
-%configure
+%configure2_13
 %{__make} 
 
 %install
