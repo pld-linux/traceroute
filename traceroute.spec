@@ -13,7 +13,7 @@ Group:		Applications/Networking
 Group(de):	Applikationen/Netzwerkwesen
 Group(pl):	Aplikacje/Sieciowe
 Source0:	ftp://ftp.ee.lbl.gov/%{name}-%{version}.tar.gz
-Source1:	%{name}.1.pl
+Source1:	%{name}.8.pl
 Patch0:		%{name}-acfix.patch
 Patch1:		%{name}-secfix.patch
 Patch2:		%{name}-unaligned.patch
