@@ -103,7 +103,7 @@ Traceroute выводит путь, который пакеты проходят по сети TCP/IP. Имена
 #%patch5 -p1
 
 %build
-autoconf
+%{__autoconf}
 CFLAGS="%{rpmcflags} -DHAVE_IFF_LOOPBACK -DUSE_KERNEL_ROUTING_TABLE"
 %configure
 %{__make}
