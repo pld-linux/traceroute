@@ -108,8 +108,8 @@ Traceroute выводит путь, который пакеты проходят по сети TCP/IP. Имена
 
 %build
 %{__autoconf}
-cp -f %{_datadir}/automake/install-sh .
-cp -f %{_datadir}/automake/config.sub .
+cp -f /usr/share/automake/install-sh .
+cp -f /usr/share/automake/config.sub .
 CFLAGS="%{rpmcflags} -DHAVE_IFF_LOOPBACK -DUSE_KERNEL_ROUTING_TABLE"
 %configure
 %{__make}
