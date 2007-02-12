@@ -1,13 +1,13 @@
 Summary:	Traces the route taken by packets over a TCP/IP network
-Summary(de):	Verfolgt die Route von Paketen Эber ein TCP/IP-Netzwerk
-Summary(es):	EnseЯa la ruta que los paquetes usan a travИs de una red TCP/IP
-Summary(fr):	DИtermine le route empruntИe par les paquets sur un rИseau TCP/IP
-Summary(pl):	Program do ╤ledzenia trasy pakietСw przez sieФ TCP/IP
-Summary(pt_BR):	Mostra a rota que os pacotes usam atravИs de uma rede TCP/IP
-Summary(ru):	Показывает трассу, по которой проходят пакеты в TCP/IP сети
-Summary(tr):	TCP/IP aПlarЩnda paketlerin rotasЩnЩ izler
-Summary(uk):	Показу╓ трасу, якою проходять пакети по TCP/IP мереж╕
-Summary(zh_CN):	[о╣мЁ]╪Л╡ИмЬбГа╙м╗б╥╬╤╣д╧╓╬ъ
+Summary(de.UTF-8):   Verfolgt die Route von Paketen ц╪ber ein TCP/IP-Netzwerk
+Summary(es.UTF-8):   Enseц╠a la ruta que los paquetes usan a travц╘s de una red TCP/IP
+Summary(fr.UTF-8):   Dц╘termine le route empruntц╘e par les paquets sur un rц╘seau TCP/IP
+Summary(pl.UTF-8):   Program do е⌡ledzenia trasy pakietцЁw przez sieд┤ TCP/IP
+Summary(pt_BR.UTF-8):   Mostra a rota que os pacotes usam atravц╘s de uma rede TCP/IP
+Summary(ru.UTF-8):   п÷п╬п╨п╟п╥я▀п╡п╟п╣я┌ я┌я─п╟я│я│я┐, п©п╬ п╨п╬я┌п╬я─п╬п╧ п©я─п╬я┘п╬п╢я▐я┌ п©п╟п╨п╣я┌я▀ п╡ TCP/IP я│п╣я┌п╦
+Summary(tr.UTF-8):   TCP/IP aд÷larд╠nda paketlerin rotasд╠nд╠ izler
+Summary(uk.UTF-8):   п÷п╬п╨п╟п╥я┐я■ я┌я─п╟я│я┐, я▐п╨п╬я▌ п©я─п╬я┘п╬п╢я▐я┌я▄ п©п╟п╨п╣я┌п╦ п©п╬ TCP/IP п╪п╣я─п╣п╤я√
+Summary(zh_CN.UTF-8):   [ГЁ╩Г╩÷]Фё─Ф÷╔Г╫▒Г╩°Х│■И─ Х╥╞Е╬└Г └Е╥╔Е┘╥
 Name:		traceroute
 Version:	1.4a12
 Release:	11
@@ -36,66 +36,66 @@ taken by the packets. Traceroute is used as a network debugging tool.
 If you're having network connectivity problems, traceroute will show
 you where the trouble is coming from along the route.
 
-%description -l de
-Traceroute druckt die Route, die von den Paketen Эber ein TCP/IP
+%description -l de.UTF-8
+Traceroute druckt die Route, die von den Paketen ц╪ber ein TCP/IP
 eingeschlagen wird. Die Namen (bzw. die IP-Nummern, wenn keine Namen
-verfЭgbar sind) der Maschinen, die beim Routing beteiligt sind,
-angefangen vom Rechner, auf dem Tracerout lДuft, bis zum Ziel, werden
+verfц╪gbar sind) der Maschinen, die beim Routing beteiligt sind,
+angefangen vom Rechner, auf dem Tracerout lц╓uft, bis zum Ziel, werden
 ausgedruckt, zusammen mit der Zeit bis zum Erhalt der
-'EmpfangsbestДtigung'. Dieses Tool kann bei der Diagnose von
+'Empfangsbestц╓tigung'. Dieses Tool kann bei der Diagnose von
 Netzwerkproblemen gute Dienste leisten.
 
-%description -l es
-Traceroute imprime la ruta que los paquetes hacen a travИs de una red
-TCP/IP. Son impresos los nombres (o nЗmeros de IP si los nombres no
-estАn disponibles) de las mАquinas que estАn en ruta en paquetes de la
-mАquina traceroute, junto con el tiempo que ha llevado para que la
-mАquina reciba el reconocimiento (ack) del paquete. Esta herramienta
-puede ser muy Зtil para diagnosticar problemas de red.
+%description -l es.UTF-8
+Traceroute imprime la ruta que los paquetes hacen a travц╘s de una red
+TCP/IP. Son impresos los nombres (o nц╨meros de IP si los nombres no
+estц║n disponibles) de las mц║quinas que estц║n en ruta en paquetes de la
+mц║quina traceroute, junto con el tiempo que ha llevado para que la
+mц║quina reciba el reconocimiento (ack) del paquete. Esta herramienta
+puede ser muy ц╨til para diagnosticar problemas de red.
 
-%description -l fr
+%description -l fr.UTF-8
 traceroute affiche la route que les paquets prennent avec TCP/IP. Il
-affiche les noms (ou les numИros IP si les noms ne sont pas
+affiche les noms (ou les numц╘ros IP si les noms ne sont pas
 disponibles) des machines qui routent les paquets de la machine sur
-laquelle traceroute s'exИcute jusqu'Ю la machine destination, ainsi
-que le temps qu'il a fallu pour recevoir un accusИ reception de cette
-machine. Cet outil est trХs pratique pour diagnostiquer les problХmes
-rИseau
+laquelle traceroute s'exц╘cute jusqu'ц═ la machine destination, ainsi
+que le temps qu'il a fallu pour recevoir un accusц╘ reception de cette
+machine. Cet outil est trц╗s pratique pour diagnostiquer les problц╗mes
+rц╘seau
 
-%description -l pl
-traceroute wy╤wietla trasЙ pakietСw do podanego komputera.
+%description -l pl.UTF-8
+traceroute wyе⌡wietla trasд≥ pakietцЁw do podanego komputera.
 
-%description -l pt_BR
-Traceroute imprime a rota que os pacotes fazem atravИs de uma rede
-TCP/IP. SЦo impressos os nomes (ou nЗmeros de IP se os nomes nЦo
-estiverem disponМveis) das mАquinas que estЦo roteando pacotes da
-mАquina traceroute, junto com o tempo que levou para a mАquina receber
-o reconhecimento (ack) do pacote. Esta ferramenta pode ser muito Зtil
+%description -l pt_BR.UTF-8
+Traceroute imprime a rota que os pacotes fazem atravц╘s de uma rede
+TCP/IP. Sцёo impressos os nomes (ou nц╨meros de IP se os nomes nцёo
+estiverem disponц╜veis) das mц║quinas que estцёo roteando pacotes da
+mц║quina traceroute, junto com o tempo que levou para a mц║quina receber
+o reconhecimento (ack) do pacote. Esta ferramenta pode ser muito ц╨til
 para diagnosticar problemas de rede.
 
-%description -l ru
-Traceroute выводит путь, который пакеты проходят по сети TCP/IP. Имена
-(или IP-адреса, если имена недоступны) машин, через которые прошли
-пакеты по дороге до точки назначения вместе со временем, которое
-потребовалось для получения подтверждения о получении пакета от этих
-машин. Эта утилита может быть очень полезна для диагностики сетевых
-проблем.
+%description -l ru.UTF-8
+Traceroute п╡я▀п╡п╬п╢п╦я┌ п©я┐я┌я▄, п╨п╬я┌п╬я─я▀п╧ п©п╟п╨п╣я┌я▀ п©я─п╬я┘п╬п╢я▐я┌ п©п╬ я│п╣я┌п╦ TCP/IP. п≤п╪п╣п╫п╟
+(п╦п╩п╦ IP-п╟п╢я─п╣я│п╟, п╣я│п╩п╦ п╦п╪п╣п╫п╟ п╫п╣п╢п╬я│я┌я┐п©п╫я▀) п╪п╟я┬п╦п╫, я┤п╣я─п╣п╥ п╨п╬я┌п╬я─я▀п╣ п©я─п╬я┬п╩п╦
+п©п╟п╨п╣я┌я▀ п©п╬ п╢п╬я─п╬пЁп╣ п╢п╬ я┌п╬я┤п╨п╦ п╫п╟п╥п╫п╟я┤п╣п╫п╦я▐ п╡п╪п╣я│я┌п╣ я│п╬ п╡я─п╣п╪п╣п╫п╣п╪, п╨п╬я┌п╬я─п╬п╣
+п©п╬я┌я─п╣п╠п╬п╡п╟п╩п╬я│я▄ п╢п╩я▐ п©п╬п╩я┐я┤п╣п╫п╦я▐ п©п╬п╢я┌п╡п╣я─п╤п╢п╣п╫п╦я▐ п╬ п©п╬п╩я┐я┤п╣п╫п╦п╦ п©п╟п╨п╣я┌п╟ п╬я┌ я█я┌п╦я┘
+п╪п╟я┬п╦п╫. п╜я┌п╟ я┐я┌п╦п╩п╦я┌п╟ п╪п╬п╤п╣я┌ п╠я▀я┌я▄ п╬я┤п╣п╫я▄ п©п╬п╩п╣п╥п╫п╟ п╢п╩я▐ п╢п╦п╟пЁп╫п╬я│я┌п╦п╨п╦ я│п╣я┌п╣п╡я▀я┘
+п©я─п╬п╠п╩п╣п╪.
 
-%description -l tr
-Traceroute, bir TCP/IP aПЩ boyunca paketlerin izledikleri rotanЩn
-dЖkЭmЭnЭ ГЩkarЩr. гalЩЧtЩПЩ makineden hedef makineye kadar olan yol
-boyunca paketleri yЖnlendiren her makinenin ismi (ya da IP
-numaralarЩ), bu makinelerden alЩndЩ bilgisinin alЩnmasЩna kadar geГen
-sЭreyle birlikte listelenir. AП sorunlarЩnЩn belirlenmesinde oldukГa
-yardЩmcЩ olabilir.
+%description -l tr.UTF-8
+Traceroute, bir TCP/IP aд÷д╠ boyunca paketlerin izledikleri rotanд╠n
+dц╤kц╪mц╪nц╪ ц╖д╠karд╠r. ц┤alд╠е÷tд╠д÷д╠ makineden hedef makineye kadar olan yol
+boyunca paketleri yц╤nlendiren her makinenin ismi (ya da IP
+numaralarд╠), bu makinelerden alд╠ndд╠ bilgisinin alд╠nmasд╠na kadar geц╖en
+sц╪reyle birlikte listelenir. Aд÷ sorunlarд╠nд╠n belirlenmesinde oldukц╖a
+yardд╠mcд╠ olabilir.
 
-%description -l ru
-Traceroute выводит путь, который пакеты проходят по сети TCP/IP. Имена
-(или IP-адреса, если имена недоступны) машин, через которые прошли
-пакеты по дороге до точки назначения вместе со временем, которое
-потребовалось для получения подтверждения о получении пакета от этих
-машин. Эта утилита может быть очень полезна для диагностики сетевых
-проблем.
+%description -l ru.UTF-8
+Traceroute п╡я▀п╡п╬п╢п╦я┌ п©я┐я┌я▄, п╨п╬я┌п╬я─я▀п╧ п©п╟п╨п╣я┌я▀ п©я─п╬я┘п╬п╢я▐я┌ п©п╬ я│п╣я┌п╦ TCP/IP. п≤п╪п╣п╫п╟
+(п╦п╩п╦ IP-п╟п╢я─п╣я│п╟, п╣я│п╩п╦ п╦п╪п╣п╫п╟ п╫п╣п╢п╬я│я┌я┐п©п╫я▀) п╪п╟я┬п╦п╫, я┤п╣я─п╣п╥ п╨п╬я┌п╬я─я▀п╣ п©я─п╬я┬п╩п╦
+п©п╟п╨п╣я┌я▀ п©п╬ п╢п╬я─п╬пЁп╣ п╢п╬ я┌п╬я┤п╨п╦ п╫п╟п╥п╫п╟я┤п╣п╫п╦я▐ п╡п╪п╣я│я┌п╣ я│п╬ п╡я─п╣п╪п╣п╫п╣п╪, п╨п╬я┌п╬я─п╬п╣
+п©п╬я┌я─п╣п╠п╬п╡п╟п╩п╬я│я▄ п╢п╩я▐ п©п╬п╩я┐я┤п╣п╫п╦я▐ п©п╬п╢я┌п╡п╣я─п╤п╢п╣п╫п╦я▐ п╬ п©п╬п╩я┐я┤п╣п╫п╦п╦ п©п╟п╨п╣я┌п╟ п╬я┌ я█я┌п╦я┘
+п╪п╟я┬п╦п╫. п╜я┌п╟ я┐я┌п╦п╩п╦я┌п╟ п╪п╬п╤п╣я┌ п╠я▀я┌я▄ п╬я┤п╣п╫я▄ п©п╬п╩п╣п╥п╫п╟ п╢п╩я▐ п╢п╦п╟пЁп╫п╬я│я┌п╦п╨п╦ я│п╣я┌п╣п╡я▀я┘
+п©я─п╬п╠п╩п╣п╪.
 
 %prep
 %setup -q
