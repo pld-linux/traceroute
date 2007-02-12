@@ -1,13 +1,13 @@
 Summary:	Traces the route taken by packets over a TCP/IP network
-Summary(de.UTF-8):   Verfolgt die Route von Paketen über ein TCP/IP-Netzwerk
-Summary(es.UTF-8):   Enseña la ruta que los paquetes usan a través de una red TCP/IP
-Summary(fr.UTF-8):   Détermine le route empruntée par les paquets sur un réseau TCP/IP
-Summary(pl.UTF-8):   Program do śledzenia trasy pakietów przez sieć TCP/IP
-Summary(pt_BR.UTF-8):   Mostra a rota que os pacotes usam através de uma rede TCP/IP
-Summary(ru.UTF-8):   Показывает трассу, по которой проходят пакеты в TCP/IP сети
-Summary(tr.UTF-8):   TCP/IP ağlarında paketlerin rotasını izler
-Summary(uk.UTF-8):   Показує трасу, якою проходять пакети по TCP/IP мережі
-Summary(zh_CN.UTF-8):   [系统]检查网络联通路径的工具
+Summary(de.UTF-8):	Verfolgt die Route von Paketen über ein TCP/IP-Netzwerk
+Summary(es.UTF-8):	Enseña la ruta que los paquetes usan a través de una red TCP/IP
+Summary(fr.UTF-8):	Détermine le route empruntée par les paquets sur un réseau TCP/IP
+Summary(pl.UTF-8):	Program do śledzenia trasy pakietów przez sieć TCP/IP
+Summary(pt_BR.UTF-8):	Mostra a rota que os pacotes usam através de uma rede TCP/IP
+Summary(ru.UTF-8):	Показывает трассу, по которой проходят пакеты в TCP/IP сети
+Summary(tr.UTF-8):	TCP/IP ağlarında paketlerin rotasını izler
+Summary(uk.UTF-8):	Показує трасу, якою проходять пакети по TCP/IP мережі
+Summary(zh_CN.UTF-8):	[系统]检查网络联通路径的工具
 Name:		traceroute
 Version:	1.4a12
 Release:	11
