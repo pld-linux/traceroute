@@ -117,5 +117,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc CREDITS ChangeLog README TODO
-%attr(4754,root,adm) %{_bindir}/* # FIXME no globs for suid/sgid files
+%attr(4754,root,adm) %{_bindir}/traceroute
+%attr(4754,root,adm) %{_bindir}/traceroute6
+%attr(4754,root,adm) %{_bindir}/tracert
 %{_mandir}/man8/*
