@@ -9,22 +9,13 @@ Summary(tr.UTF-8):	TCP/IP ağlarında paketlerin rotasını izler
 Summary(uk.UTF-8):	Показує трасу, якою проходять пакети по TCP/IP мережі
 Summary(zh_CN.UTF-8):	[系统]检查网络联通路径的工具
 Name:		traceroute
-Version:	1.4a12
-Release:	11
+Version:	2.0.9
+Release:	1
 License:	BSD
 Group:		Applications/Networking
-Source0:	ftp://ftp.ee.lbl.gov/%{name}-%{version}.tar.gz
-# Source0-md5:	964d599ef696efccdeebe7721cd4828d
-Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
-# Source1-md5:	76539283b9fcb499ba5121a8a06e9825
-Patch0:		%{name}-acfix.patch
-Patch1:		%{name}-secfix.patch
-Patch2:		%{name}-unaligned.patch
-Patch3:		%{name}-autoroute.patch
-Patch4:		%{name}-lsrr.patch
-Patch5:		%{name}-droproot.patch
-BuildRequires:	autoconf
-BuildRequires:	automake
+Source0:	http://dl.sourceforge.net/traceroute/%{name}-%{version}.tar.gz
+# Source0-md5:	884d132d16d2566062811e569ed28583
+URL:		http://traceroute.sourceforge.net/
 Obsoletes:	traceroute-nanog
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -99,39 +90,32 @@ Traceroute выводит путь, который пакеты проходят
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-#%patch5 -p1
 
 %build
-%{__autoconf}
-cp -f /usr/share/automake/install-sh .
-cp -f /usr/share/automake/config.sub .
-CFLAGS="%{rpmcflags} -DHAVE_IFF_LOOPBACK -DUSE_KERNEL_ROUTING_TABLE"
-%configure
-%{__make}
+%{__make} \
+	CC="%{__cc}" \
+	CPPFLAGS="%{rpmcflags} -D_GNU_SOURCE=1" \
+	LDFLAGS="%{rpmldflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_sbindir},%{_mandir}/man8}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man8}
 
-install traceroute $RPM_BUILD_ROOT%{_bindir}
-ln -s %{_bindir}/traceroute $RPM_BUILD_ROOT%{_sbindir}
-install traceroute.8 $RPM_BUILD_ROOT%{_mandir}/man8
+install traceroute/traceroute $RPM_BUILD_ROOT%{_bindir}
 
-bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
+ln -s traceroute $RPM_BUILD_ROOT%{_bindir}/traceroute6
+ln -s tracert $RPM_BUILD_ROOT%{_bindir}/tracert
+
+install */*.8 $RPM_BUILD_ROOT%{_mandir}/man8
+
+echo ".so traceroute.8" > $RPM_BUILD_ROOT%{_mandir}/man8/traceroute6.8
+echo ".so traceroute.8" > $RPM_BUILD_ROOT%{_mandir}/man8/tracert.8
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES README
-%attr(4754,root,adm) %{_bindir}/*
-%{_sbindir}/*
+%doc CREDITS ChangeLog README TODO
+%attr(4754,root,adm) %{_bindir}/* # FIXME no globs for suid/sgid files
 %{_mandir}/man8/*
-%lang(pl) %{_mandir}/pl/man8/*
-%lang(pt) %{_mandir}/pt/man8/*
