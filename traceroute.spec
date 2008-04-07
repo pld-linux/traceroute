@@ -102,12 +102,10 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man8}
 
 install traceroute/traceroute $RPM_BUILD_ROOT%{_bindir}
-
 ln -s traceroute $RPM_BUILD_ROOT%{_bindir}/traceroute6
 ln -s tracert $RPM_BUILD_ROOT%{_bindir}/tracert
 
-install */*.8 $RPM_BUILD_ROOT%{_mandir}/man8
-
+cp -a */*.8 $RPM_BUILD_ROOT%{_mandir}/man8
 echo ".so traceroute.8" > $RPM_BUILD_ROOT%{_mandir}/man8/traceroute6.8
 echo ".so traceroute.8" > $RPM_BUILD_ROOT%{_mandir}/man8/tracert.8
 
@@ -118,6 +116,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc CREDITS ChangeLog README TODO
 %attr(4754,root,adm) %{_bindir}/traceroute
-%attr(4754,root,adm) %{_bindir}/traceroute6
-%attr(4754,root,adm) %{_bindir}/tracert
+%attr(755,root,adm) %{_bindir}/traceroute6
+%attr(755,root,adm) %{_bindir}/tracert
 %{_mandir}/man8/*
