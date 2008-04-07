@@ -116,6 +116,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc CREDITS ChangeLog README TODO
 %attr(4754,root,adm) %{_bindir}/traceroute
-%attr(755,root,adm) %{_bindir}/traceroute6
-%attr(755,root,adm) %{_bindir}/tracert
+%attr(755,root,root) %{_bindir}/traceroute6
+%attr(755,root,root) %{_bindir}/tracert
 %{_mandir}/man8/*
