@@ -9,12 +9,12 @@ Summary(tr.UTF-8):	TCP/IP ağlarında paketlerin rotasını izler
 Summary(uk.UTF-8):	Показує трасу, якою проходять пакети по TCP/IP мережі
 Summary(zh_CN.UTF-8):	[系统]检查网络联通路径的工具
 Name:		traceroute
-Version:	2.0.9
-Release:	3
+Version:	2.0.11
+Release:	1
 License:	BSD
 Group:		Applications/Networking
 Source0:	http://dl.sourceforge.net/traceroute/%{name}-%{version}.tar.gz
-# Source0-md5:	884d132d16d2566062811e569ed28583
+# Source0-md5:	d400573042d41559fc3e5260275300d8
 URL:		http://traceroute.sourceforge.net/
 Obsoletes:	traceroute-nanog
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -103,7 +103,7 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man8}
 
 install traceroute/traceroute $RPM_BUILD_ROOT%{_bindir}
 ln -s traceroute $RPM_BUILD_ROOT%{_bindir}/traceroute6
-ln -s tracert $RPM_BUILD_ROOT%{_bindir}/tracert
+ln -s traceroute $RPM_BUILD_ROOT%{_bindir}/tracert
 
 cp -a */*.8 $RPM_BUILD_ROOT%{_mandir}/man8
 echo ".so traceroute.8" > $RPM_BUILD_ROOT%{_mandir}/man8/traceroute6.8
@@ -118,4 +118,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(4754,root,adm) %{_bindir}/traceroute
 %attr(755,root,root) %{_bindir}/traceroute6
 %attr(755,root,root) %{_bindir}/tracert
-%{_mandir}/man8/*
+%{_mandir}/man8/traceroute.8*
+%{_mandir}/man8/traceroute6.8*
+%{_mandir}/man8/tracert.8*
