@@ -10,12 +10,14 @@ Summary(uk.UTF-8):	Показує трасу, якою проходять пак
 Summary(zh_CN.UTF-8):	[系统]检查网络联通路径的工具
 Name:		traceroute
 Version:	2.0.11
-Release:	1
+Release:	2
 License:	BSD
 Group:		Applications/Networking
 Source0:	http://dl.sourceforge.net/traceroute/%{name}-%{version}.tar.gz
 # Source0-md5:	d400573042d41559fc3e5260275300d8
+Patch0:		%{name}-AI_IDN.patch
 URL:		http://traceroute.sourceforge.net/
+BuildRequires:	rpm >= 4.4.9-56
 Obsoletes:	traceroute-nanog
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -90,6 +92,9 @@ Traceroute выводит путь, который пакеты проходят
 
 %prep
 %setup -q
+%if "%{pld_release}" == "ac"
+%patch0 -p1
+%endif
 
 %build
 %{__make} \
