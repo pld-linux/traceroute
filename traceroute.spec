@@ -12,7 +12,7 @@ Name:		traceroute
 Version:	2.0.14
 Release:	1
 License:	BSD
-Group:		Applications/Networking
+Group:		Networking/Utilities
 Source0:	http://dl.sourceforge.net/traceroute/%{name}-%{version}.tar.gz
 # Source0-md5:	98763be8af8952a406c53a283c880dea
 Patch0:		%{name}-AI_IDN.patch
