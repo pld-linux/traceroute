@@ -82,14 +82,6 @@ numaraları), bu makinelerden alındı bilgisinin alınmasına kadar geçen
 süreyle birlikte listelenir. Ağ sorunlarının belirlenmesinde oldukça
 yardımcı olabilir.
 
-%description -l ru.UTF-8
-Traceroute выводит путь, который пакеты проходят по сети TCP/IP. Имена
-(или IP-адреса, если имена недоступны) машин, через которые прошли
-пакеты по дороге до точки назначения вместе со временем, которое
-потребовалось для получения подтверждения о получении пакета от этих
-машин. Эта утилита может быть очень полезна для диагностики сетевых
-проблем.
-
 %prep
 %setup -q
 %if "%{pld_release}" == "ac"
