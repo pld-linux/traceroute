@@ -1,3 +1,11 @@
+#
+# Conditional build:
+%bcond_without	idn	# IDN support
+#
+%if "%{pld_release}" == "ac"
+# too old glibc (no AI_IDN support) in Ac
+%undefine	with_idn
+%endif
 Summary:	Traces the route taken by packets over a TCP/IP network
 Summary(de.UTF-8):	Verfolgt die Route von Paketen über ein TCP/IP-Netzwerk
 Summary(es.UTF-8):	Enseña la ruta que los paquetes usan a través de una red TCP/IP
@@ -9,12 +17,12 @@ Summary(tr.UTF-8):	TCP/IP ağlarında paketlerin rotasını izler
 Summary(uk.UTF-8):	Показує трасу, якою проходять пакети по TCP/IP мережі
 Summary(zh_CN.UTF-8):	[系统]检查网络联通路径的工具
 Name:		traceroute
-Version:	2.0.17
+Version:	2.0.18
 Release:	1
 License:	BSD
 Group:		Networking/Utilities
 Source0:	http://downloads.sourceforge.net/traceroute/%{name}-%{version}.tar.gz
-# Source0-md5:	01b609719249db7bc6de12167d2f4dc9
+# Source0-md5:	b7254149b7f081cce07f4b9e065ba5ef
 Patch0:		%{name}-AI_IDN.patch
 URL:		http://traceroute.sourceforge.net/
 BuildRequires:	rpm >= 4.4.9-56
@@ -84,9 +92,7 @@ yardımcı olabilir.
 
 %prep
 %setup -q
-%if "%{pld_release}" == "ac"
-%patch0 -p1
-%endif
+%{!?with_idn:%patch0 -p1}
 
 %build
 %{__make} \
