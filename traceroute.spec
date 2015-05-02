@@ -18,7 +18,7 @@ Summary(uk.UTF-8):	Показує трасу, якою проходять пак
 Summary(zh_CN.UTF-8):	[系统]检查网络联通路径的工具
 Name:		traceroute
 Version:	2.0.20
-Release:	1
+Release:	2
 License:	BSD
 Group:		Networking/Utilities
 Source0:	http://downloads.sourceforge.net/traceroute/%{name}-%{version}.tar.gz
