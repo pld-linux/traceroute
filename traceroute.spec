@@ -17,16 +17,16 @@ Summary(tr.UTF-8):	TCP/IP ağlarında paketlerin rotasını izler
 Summary(uk.UTF-8):	Показує трасу, якою проходять пакети по TCP/IP мережі
 Summary(zh_CN.UTF-8):	[系统]检查网络联通路径的工具
 Name:		traceroute
-Version:	2.0.22
+Version:	2.1.2
 Release:	1
 License:	BSD
 Group:		Networking/Utilities
-Source0:	http://downloads.sourceforge.net/traceroute/%{name}-%{version}.tar.gz
-# Source0-md5:	47ae1d10d334b76d1d779e9d1eb8b641
+Source0:	https://downloads.sourceforge.net/traceroute/%{name}-%{version}.tar.gz
+# Source0-md5:	56fdeed70d922f2545f4f9121234c313
 Patch0:		%{name}-AI_IDN.patch
-URL:		http://traceroute.sourceforge.net/
+URL:		https://traceroute.sourceforge.net/
 BuildRequires:	rpm >= 4.4.9-56
-Obsoletes:	traceroute-nanog
+Obsoletes:	traceroute-nanog < 6.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -111,6 +111,9 @@ ln -s traceroute $RPM_BUILD_ROOT%{_bindir}/tracert
 cp -a */*.8 $RPM_BUILD_ROOT%{_mandir}/man8
 echo ".so traceroute.8" > $RPM_BUILD_ROOT%{_mandir}/man8/traceroute6.8
 echo ".so traceroute.8" > $RPM_BUILD_ROOT%{_mandir}/man8/tracert.8
+
+# wrapper not installed
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/man8/tcptraceroute.8
 
 %clean
 rm -rf $RPM_BUILD_ROOT
