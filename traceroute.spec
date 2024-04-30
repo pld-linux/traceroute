@@ -17,12 +17,12 @@ Summary(tr.UTF-8):	TCP/IP ağlarında paketlerin rotasını izler
 Summary(uk.UTF-8):	Показує трасу, якою проходять пакети по TCP/IP мережі
 Summary(zh_CN.UTF-8):	[系统]检查网络联通路径的工具
 Name:		traceroute
-Version:	2.1.2
+Version:	2.1.5
 Release:	1
 License:	BSD
 Group:		Networking/Utilities
 Source0:	https://downloads.sourceforge.net/traceroute/%{name}-%{version}.tar.gz
-# Source0-md5:	56fdeed70d922f2545f4f9121234c313
+# Source0-md5:	6599a83531ecb31275ff7906349c0970
 Patch0:		%{name}-AI_IDN.patch
 URL:		https://traceroute.sourceforge.net/
 BuildRequires:	rpm >= 4.4.9-56
