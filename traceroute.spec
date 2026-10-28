@@ -17,12 +17,12 @@ Summary(tr.UTF-8):	TCP/IP ağlarında paketlerin rotasını izler
 Summary(uk.UTF-8):	Показує трасу, якою проходять пакети по TCP/IP мережі
 Summary(zh_CN.UTF-8):	[系统]检查网络联通路径的工具
 Name:		traceroute
-Version:	2.1.5
+Version:	2.1.6
 Release:	1
-License:	BSD
+License:	GPL v2+/LGPL v2.1+
 Group:		Networking/Utilities
 Source0:	https://downloads.sourceforge.net/traceroute/%{name}-%{version}.tar.gz
-# Source0-md5:	6599a83531ecb31275ff7906349c0970
+# Source0-md5:	94b41044978f4f57c373adc5a32c42d7
 Patch0:		%{name}-AI_IDN.patch
 URL:		https://traceroute.sourceforge.net/
 BuildRequires:	rpm >= 4.4.9-56
@@ -92,12 +92,13 @@ yardımcı olabilir.
 
 %prep
 %setup -q
-%{!?with_idn:%patch0 -p1}
+%{!?with_idn:%patch -P0 -p1}
 
 %build
 %{__make} \
 	CC="%{__cc}" \
-	CPPFLAGS="%{rpmcflags} -D_GNU_SOURCE=1" \
+	CFLAGS="%{rpmcflags}" \
+	CPPFLAGS="%{rpmcppflags} -D_GNU_SOURCE=1" \
 	LDFLAGS="%{rpmldflags}"
 
 %install
